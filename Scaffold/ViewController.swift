@@ -18,21 +18,44 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        // Logging options that are interesting to me
+        // Logging options that are interesting to you
         LocalDevice.loggingOptions = [.bluetooth, .telematics]
 
-        do {
-            // Replace this with snippet from your developer account
-            try LocalDevice.sharedDevice.initialise(
-                deviceCertificate: "dGVzdF1c/i8NfIZSg0ASN9eqGUm33uO9QMplcmdp38sllFP71m/XJqbFBvjIjuUzlisSqb7S/z6VzA669ClOATberMQdLTEc7OQJFNIViwOh5Y4oLLo+mWEC20FtkyKbiDqQrjDLlncNiytQfdANchvHyua2nxWrmuKxf/iDx9UcYByX1qT9rMdwjbxFTGYNUwA/PNNg693O",
-                devicePrivateKey: "IJhqWp5RHVnBww5v3C88U6zsYCiRnMb/IkB/RDyd2xU=",
-                issuerPublicKey: "p+majvq75ISGpEDR+0GgXmhqucmDfP1pUNTE/sIaSbuPTA7o7kAbtRBwCfS2OPt8N9HBiLsYNsMl0ztzz9HX4A=="
-            )
-        }
-        catch {
-            //handle error
-            print("Invalid initialisation parameters, please double check the snippet.")
-        }
+        /*
+
+         Before using the HMKit, you must initialise the LocalDevice with a snippet from the Developer Center:
+         - go to https://developers.high-mobility.com
+         - LOGIN
+         - choose DEVELOP (in top-left, the (2nd) button with a spanner)
+         - choose APPLICATIONS (in the left)
+         - look for SANDBOX app
+         - click on the "Device Certificates" on the app
+         - choose the SANDBOX DEVICE
+         - copy the whole snippet
+         - paste it below this comment box
+         - you made it!
+
+         Bonus steps after completing the above:
+         - relax
+         - celebrate
+         - explore the APIs
+
+
+         An example of a snippet copied from the Developer Center (do not use, will obviously not work):
+
+         do {
+            try LocalDevice.sharedDevice.initialise(deviceCertificate: Base64String,
+                                                    devicePrivateKey: Base64String,
+                                                    issuerPublicKey: Base64String)
+         }
+         catch {
+            // Handle the error
+            print("Invalid initialisation parameters, please double-check the snippet: \(error)")
+         }
+
+         */
+
+        // PASTE THE SNIPPET HERE
 
         LocalDevice.sharedDevice.delegate = self as LocalDeviceDelegate
 
@@ -44,30 +67,65 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         }
 
         do {
+            /*
+
+             Before using Telematics in HMKit, you must get the Access Certificate for the car / emualator:
+             - go to https://developers.high-mobility.com
+             - LOGIN
+             - go to Tutorials ›› SDK ›› iOS for instructions to connect a service to the car
+             - find and do the tutorial for connecting a Service to the car
+             - authorise the service
+             - take a good look into the mirror, you badass
+             - open the SANDBOX car emulator
+             - on the left, in the Authorised Services list, choose the Service you used before
+             - copy the ACCESS TOKEN
+             - paste it below to the appropriately named variable
+
+             Bonus steps again:
+             - get a beverage
+             - quench your thirst
+             - change the world with your mind
+             - explore the APIs
+
+
+             An example of an access token:
+
+             awb4oQwMHxomS926XHyqdx1d9nYLYs94GvlJYQCblbP_wt-aBrpNpmSFf2qvhj18GWXXQ-aAtSaa4rnwBAHs5wpe1aK-3bD4xfQ3qtOS1QNV3a3iJVg03lTdNOLjFxlIOA
+             
+             */
+            
+            
+            let accessToken: String = "PASTE ACCESS TOKEN HERE"
+
             // Send command to the car through Telematics, make sure that the emulator is opened for this to work, otherwise "Vehicle asleep" will be returned
-            // Replace token with Authorised Service token from the emulator according to tutorial https://developers.h-m.space/resources/tutorials/virtual-cars/using-telematics
-            try Telematics.downloadAccessCertificate(accessToken: "Qe8_nLatDfWzQ1HCi30cUjRUZguZVPTHZ046zVXfkAxgj1bpvem_N752EcTd_6BN2xnT_bsGJhFjvB3Xuhh4jRrjKX2UG0_lVqGyTrFVFHbjXkb1DLdi95DnARO8fNTc-g") { result in
+            try Telematics.downloadAccessCertificate(accessToken: accessToken) { result in
 
                 if case Telematics.TelematicsRequestResult.success(let serial) = result {
                     print("Certificate downloaded, sending command through telematics.")
 
-                    Telematics.sendCommand(Data(bytes: AutoAPI.DoorLocksCommand.lockDoorsBytes(.unlock)), vehicleSerial: serial) { response in
 
-                        if case Telematics.TelematicsRequestResult.success(let data) = response {
-                            guard let data = data else {
-                                return // fail
+                    do {
+                        try Telematics.sendCommand(AutoAPI.DoorLocksCommand.lockDoorsBytes(.unlock), vehicleSerial: serial) { response in
+
+                            if case Telematics.TelematicsRequestResult.success(let data) = response {
+                                guard let data = data else {
+                                    return // fail
+                                }
+
+                                guard let locks = AutoAPI.parseIncomingCommand(data)?.value as? AutoAPI.DoorLocksCommand.Response else {
+                                    print("Failed to parse Auto API")
+                                    return
+                                }
+
+                                print("Got the new lock state \(locks).")
                             }
-
-                            guard let locks = AutoAPI.parseIncomingBytes(Array(data))?.value as? AutoAPI.DoorLocksCommand.Response else {
-                                print("Failed to parse Auto API")
-                                return
+                            else {
+                                print("Failed to lock the doors \(response).")
                             }
-
-                            print("Got the new lock state \(locks).")
                         }
-                        else {
-                            print("Failed to lock the doors \(response).")
-                        }
+                    }
+                    catch {
+                        print("Failed to send command")
                     }
                 }
                 else {
@@ -124,7 +182,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
 
     func link(_ link: Link, didReceiveCommand bytes: [UInt8]) {
 
-        guard let locks = AutoAPI.parseIncomingBytes(bytes)?.value as? AutoAPI.DoorLocksCommand.Response else {
+        guard let locks = AutoAPI.parseIncomingCommand(bytes)?.value as? AutoAPI.DoorLocksCommand.Response else {
             print("Failed to parse Auto API")
             return
         }

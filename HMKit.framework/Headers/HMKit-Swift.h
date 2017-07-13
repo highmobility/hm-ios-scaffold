@@ -142,18 +142,10 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 SWIFT_CLASS("_TtC5HMKit11Certificate")
 @interface Certificate : NSObject <NSCoding>
-/// The certificate’s data in binary format, without the signature
+/// Bytes making up the certificate; <code>nil</code> by default (subclasses override this to provide a value).
 @property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nullable certificateData;
-/// The certificate’s signature
+/// Signature of the certificate; must be <em>64 bytes</em>.
 @property (nonatomic, copy) NSArray<NSNumber *> * _Nullable signature;
-@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull bytes;
-/// Checks the certificate’s signature
-/// \param CAPublicKey The public key that the signature is checked with
-///
-///
-/// returns:
-/// True if the signature is valid for the provided public key
-- (BOOL)isSignatureValidWithCAPublicKey:(NSArray<NSNumber *> * _Nonnull)CAPublicKey SWIFT_WARN_UNUSED_RESULT;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (void)encodeWithCoder:(NSCoder * _Nonnull)aCoder;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -162,26 +154,24 @@ SWIFT_CLASS("_TtC5HMKit11Certificate")
 
 SWIFT_CLASS("_TtC5HMKit17AccessCertificate")
 @interface AccessCertificate : Certificate
-/// The device’s, that is gaining access, serial number
+/// Serial number of the device gaining access.
 @property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull gainingSerial;
-/// The device’s, that is gaining access, public key
+/// Public key of the device gaining access.
 @property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull gainingPublicKey;
-/// The device’s, that is providing access, public key
+/// Serial number of the device providing access to itself.
 @property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull providingSerial;
-/// The Certificate’s validity start date
+/// Start time of the certificate.
 @property (nonatomic, readonly, copy) NSDate * _Nonnull startDate;
-/// The Certificate’s validity end date
+/// End time of the certificate.
 @property (nonatomic, readonly, copy) NSDate * _Nonnull endDate;
-/// The Certificate is expired if endDate is before today.
+/// If the certificate is expired by now.
 @property (nonatomic, readonly) BOOL isExpired;
-/// The Certificate’s permissions
+/// Permissions in the certificate; can be up to <em>16 bytes</em>.
 @property (nonatomic, copy) NSArray<NSNumber *> * _Nullable permissions;
-/// The Certificate’s signature
+/// Signature of the certificate; must be <em>64 bytes</em>.
 @property (nonatomic, copy) NSArray<NSNumber *> * _Nullable signature;
-/// The certificate data in binary format, without the signature
+/// Bytes making up the certificate; without the signature.
 @property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nullable certificateData;
-- (nullable instancetype)initWithGainerSerial:(NSArray<NSNumber *> * _Nonnull)gainerSerial gainingPublicKey:(NSArray<NSNumber *> * _Nonnull)gainingPublicKey providingSerial:(NSArray<NSNumber *> * _Nonnull)providingSerial startDate:(NSDate * _Nonnull)startDate endDate:(NSDate * _Nonnull)endDate permissions:(NSArray<NSNumber *> * _Nonnull)permissions;
-- (nullable instancetype)init:(NSArray<NSNumber *> * _Nonnull)bytes OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
 @end
@@ -195,15 +185,13 @@ SWIFT_CLASS("_TtC5HMKit17AccessCertificate")
 
 SWIFT_CLASS("_TtC5HMKit6Device")
 @interface Device : NSObject
-/// Wheter the bluetooth data encryption is enabled
+/// Enable encryption of commands; defaults to <code>true</code>.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL isEncryptionEnabled;)
 + (BOOL)isEncryptionEnabled SWIFT_WARN_UNUSED_RESULT;
 + (void)setIsEncryptionEnabled:(BOOL)value;
-/// The Device Certificate.
+/// <code>DeviceCertificate</code> of the device.
 @property (nonatomic, readonly, strong) DeviceCertificate * _Nullable certificate;
-/// The identifier at the end of the name
-@property (nonatomic, readonly, copy) NSString * _Nonnull nameIdentifier;
-/// The name of the device. The identifier is encoded into this.
+/// Name of the device.
 @property (nonatomic, readonly, copy) NSString * _Nonnull name;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
@@ -238,142 +226,35 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class) BOOL isEncryptionEnabled;)
 /// </ul>
 SWIFT_CLASS("_TtC5HMKit17DeviceCertificate")
 @interface DeviceCertificate : Certificate
-/// The certificate issuer’s identifier
-@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nullable issuer;
-/// The certificate’s app identifier
-@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nullable appIdentifier;
-/// The serial number of the device
-@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nullable serial;
-/// The public key of the device
-@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nullable publicKey;
-/// The Certificate’s signature
+/// Issuer’s identifier.
+@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull issuer;
+/// Application’s identifier.
+@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull appIdentifier;
+/// Serial number of the device this certificate is for.
+@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull serial;
+/// Public key of the device this certificate is for.
+@property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nonnull publicKey;
+/// Signature of the certificate; must be <em>64 bytes</em>.
 @property (nonatomic, copy) NSArray<NSNumber *> * _Nullable signature;
-/// The certificate’s data in binary format, without the signature
+/// Bytes making up the certificate; without the signature.
 @property (nonatomic, readonly, copy) NSArray<NSNumber *> * _Nullable certificateData;
-- (nullable instancetype)initWithIssuer:(NSArray<NSNumber *> * _Nonnull)issuer appID:(NSArray<NSNumber *> * _Nonnull)appID serial:(NSArray<NSNumber *> * _Nonnull)serial publicKey:(NSArray<NSNumber *> * _Nonnull)publicKey;
-- (nullable instancetype)init:(NSArray<NSNumber *> * _Nonnull)bytes OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 @property (nonatomic, readonly, copy) NSString * _Nonnull description;
 @end
 
 
-SWIFT_CLASS("_TtC5HMKit14ExternalDevice")
-@interface ExternalDevice : Device
-/// The signal strength’s logarithmic value, from the underlying CBPeripheral.
-@property (nonatomic, readonly) NSInteger rssi;
-- (nonnull instancetype)init SWIFT_UNAVAILABLE;
-@end
-
-
-@interface ExternalDevice (SWIFT_EXTENSION(HMKit))
-@end
-
-
-@interface ExternalDevice (SWIFT_EXTENSION(HMKit))
-@end
-
-
-@interface ExternalDevice (SWIFT_EXTENSION(HMKit))
-/// Connect to the device to send commands and enable other functionality.
-/// \param withResponse The block that will be evoked when the connection process has finished.
-///
-- (void)connectWithResponse:(void (^ _Nonnull)(NSError * _Nullable))response;
-/// Disconnect from the device.
-/// Disconnect after communication with the device is finished, and you’re not expecting any commands, to avoid leaving the external device in an unknown state.
-/// \param withResponse The block that will be evoked when the disconnection process has finished.
-///
-- (void)disconnectWithResponse:(void (^ _Nonnull)(NSError * _Nullable))response;
-/// Get a random nonce from the device.
-/// \param withResponse The bloc that will be evoked when getting the nonce has finished. Contains the nonce’s bytes, or an error.
-///
-- (void)getNonceWithResponse:(void (^ _Nonnull)(NSArray<NSNumber *> * _Nullable, NSError * _Nullable))response;
-/// Get the device’s certificate.
-/// On success, the certificate is stored in the <em>certificate</em> variable.
-/// \param response The block that will be evoked when the command has finished.
-///
-- (void)getDeviceCertificateWithResponse:(void (^ _Nonnull)(NSError * _Nullable))response;
-/// Get the device’s certificate.
-/// On success, the certificate is stored in the <em>certificate</em> variable.
-/// \param nonce The nonce that is used to ask the certificate.
-///
-/// \param signature The signature, from Certificate Authority, for the nonce.
-///
-/// \param response The block that will be evoked when the command has finished.
-///
-- (void)getDeviceCertificateWithNonce:(NSArray<NSNumber *> * _Nonnull)nonce signature:(NSArray<NSNumber *> * _Nonnull)signature response:(void (^ _Nonnull)(NSError * _Nullable))response;
-/// Register an access certificate to the device.
-/// \param certificate The access certificate that is sent to the device.
-///
-/// \param response The block that will be evoked when the command has finished.
-///
-- (void)registerCertificate:(AccessCertificate * _Nonnull)certificate response:(void (^ _Nonnull)(NSError * _Nullable))response;
-/// Authenticate with the device.
-/// Authentication is required to access certain functionality.
-/// precondition:
-/// Device certificate has to be set <code>manually</code>, or by calling <code>getDeviceCertificate()</code>, before authenticating.
-/// \param response The block that will be evoked when authenticating has finished.
-///
-- (void)authenticateWithResponse:(void (^ _Nonnull)(NSError * _Nullable))response;
-/// Store a certificate to the device.
-/// Used to save certificates to an external device, so that other devices connecting to it, can authenticate or ask for the certificate.
-/// This should be thought of as saving the certificate to a database for other devices to read.
-/// precondition:
-/// Must be <em>authenticated</em>.
-/// \param certificate The certificate that will be stored on the device.
-///
-/// \param response The block that will be evoked when storing has finished.
-///
-- (void)storeCertificate:(AccessCertificate * _Nonnull)certificate response:(void (^ _Nonnull)(NSError * _Nullable))response;
-/// Get an access certificate.
-/// Used to retrieve an access certificate stored on an external device.
-/// precondition:
-/// Must be <em>authenticated</em>.
-/// \param serial The serial number of the access provider, 9 bytes.
-///
-/// \param response The block that will be evoked when the command has finished.
-///
-- (void)getAccessCertificateWithSerial:(NSArray<NSNumber *> * _Nonnull)serial response:(void (^ _Nonnull)(NSArray<NSNumber *> * _Nullable, NSError * _Nullable))response;
-/// Send command inside a secure container.
-/// precondition:
-/// Must be <em>authenticated</em>.
-/// \param bytes The bytes sent to the device.
-///
-/// \param secureResponse The flag noting if the response has an integrity check, defaults to <em>true</em>. Usually set to <em>false</em> for unsecure quick data transmissions, eg. real time heart rate signal.
-///
-/// \param response The block that will be evoked when the command has finished.
-///
-- (void)sendCommandWithBytes:(NSArray<NSNumber *> * _Nonnull)bytes secureResponse:(BOOL)secureResponse response:(void (^ _Nonnull)(NSArray<NSNumber *> * _Nullable, NSError * _Nullable))response;
-/// Revoke a registered certificate from the device.
-/// Deletes the registered certificate, along with it’s accompanying stored certificates, from the device’s storage.
-/// precondition:
-/// Must be <em>authenticated</em>.
-/// \param serial The serial number of the access provider, 9 bytes.
-///
-/// \param response The block that will be evoked when the revoking has finished.
-///
-- (void)revokeCertificateWithSerial:(NSArray<NSNumber *> * _Nonnull)serial response:(void (^ _Nonnull)(NSError * _Nullable))response;
-/// Reset the device.
-/// All registered and stored certificates will be deleted.
-/// precondition:
-/// Must be <em>authenticated</em>.
-/// \param response The block that will be evoked when the reset has finished.
-///
-- (void)resetWithResponse:(void (^ _Nonnull)(NSError * _Nullable))response;
-@end
-
-
 SWIFT_CLASS("_TtC5HMKit11LocalDevice")
 @interface LocalDevice : Device
-/// Singleton access for the LocalDevice
+/// Singleton access for the <code>LocalDevice</code>, read-only.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) LocalDevice * _Nonnull sharedDevice;)
 + (LocalDevice * _Nonnull)sharedDevice SWIFT_WARN_UNUSED_RESULT;
-/// The certificates that are registered to the LocalDevice
+/// <code>AccessCertificates</code> registered with the <code>LocalDevice</code>, read-only.
 @property (nonatomic, readonly, copy) NSArray<AccessCertificate *> * _Nonnull registeredCertificates;
-/// The certificates that are stored to the LocalDevice
+/// <code>AccessCertificates</code> stored with the <code>LocalDevice</code>, read-only.
 @property (nonatomic, readonly, copy) NSArray<AccessCertificate *> * _Nonnull storedCertificates;
-/// Used for letting the connected device know <em>in super-short time-intervals</em>, that this device is still connected
+/// Enable for <em>safety-critical</em> connections, that need to track the <em>connection state</em> (bluetooth’s own connection state changes are designed to be power-efficient, but lazy); defaults to <code>false</code>.
 @property (nonatomic) BOOL isAlivePingActive;
-/// If the broadcasting filter has been set
+/// If the broadcasting filter has been set, read-only.
 /// seealso:
 ///
 /// <ul>
@@ -381,62 +262,48 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) LocalDevice 
 ///     <code>clearBroadcastingFilter()</code>
 ///   </li>
 ///   <li>
-///     <code>isBroadcastingFilterActive</code>
+///     <code>setBroadcastingFilter(:)</code>
 ///   </li>
 /// </ul>
 @property (nonatomic, readonly) BOOL isBroadcastingFilterActive;
-/// Set the device certificate and private key before using any other functionality
-/// \param certificate The device certificate
+/// Initialise the <code>LocalDevice</code> with essential values before using any other functionality.
+/// Inputs are a <code>Base64String</code>
+/// \param deviceCertificate Data for <code>DeviceCertificate</code> in a <code>Base64String</code> format.
 ///
-/// \param privateKey 32 byte private key with elliptic curve Prime 256v1
+/// \param devicePrivateKey Private key (elliptic curve p256v1) for this device; must be <em>32 bytes</em> and match the public key in <code>DeviceCertificate</code>.
 ///
-/// \param CAPublicKey 64 byte public key of the Certificate Authority
-///
-- (void)setDeviceCertificate:(DeviceCertificate * _Nonnull)certificate privateKey:(NSArray<NSNumber *> * _Nonnull)privateKey CAPublicKey:(NSArray<NSNumber *> * _Nonnull)CAPublicKey;
-/// Initialise the LocalDevice with essential values before using any other functionality.
-/// \param deviceCertificate The device’s certificate in base64
-///
-/// \param devicePrivateKey The device’s private key in base64, 32 bytes, using elliptic curve p256
-///
-/// \param issuerPublicKey The issuer’s public key in base64 , 64 bytes
+/// \param issuerPublicKey Public key of the Issuer; must be <em>64 bytes</em>.
 ///
 ///
 /// throws:
-/// <em>LinkError.internalError</em> when the device cert couldn’t be created from the input, or the keys are not the correct length
+/// <code>.internalError</code> when the <code>DeviceCertificate</code> could not be created from the input; or the keys are not the correct length.
 - (BOOL)initialiseWithDeviceCertificate:(NSString * _Nonnull)deviceCertificate devicePrivateKey:(NSString * _Nonnull)devicePrivateKey issuerPublicKey:(NSString * _Nonnull)issuerPublicKey error:(NSError * _Nullable * _Nullable)error;
-/// Start broadcasting the LocalDevice via BLE advertising.
+/// Start broadcasting the <code>LocalDevice</code> via BLE advertising.
 ///
 /// throws:
-/// A <em>LinkError</em> relating to bluetooth problems
+/// A <code>LinkError</code> relating to bluetooth problems.
 - (BOOL)startBroadcastingAndReturnError:(NSError * _Nullable * _Nullable)error;
-/// Stop broadcasting the LocalDevice
+/// Stop broadcasting the <code>LocalDevice</code>.
 - (void)stopBroadcasting;
-/// Stops broadcasting, removes the services (thus disconnecting from centrals) and clears the links from the memory.
+/// Stops broadcasting, removes the services (thus disconnecting from centrals) and clears the links.
 - (void)disconnectAll;
-/// Adds a registered Certificate to Device’s storage
-/// \param certificate The certificate that can be used by the Device to verify authorized Links.
+/// Registers an <code>AccessCertificate</code> with the <code>LocalDevice</code>.
+/// \param certificate Certificate that will be used to <em>authenticate</em> with connecting devices.
 ///
 ///
 /// throws:
-/// Error if the certificate is invalid or storage is full
+/// <code>.internalError</code> when <code>DeviceCertificate</code> is not set or the providing serial does not match the <code>DeviceCertificate</code> one.
 - (BOOL)registerCertificate:(AccessCertificate * _Nonnull)certificate error:(NSError * _Nullable * _Nullable)error;
-/// Stores a Certificate to Device’s storage. This certificate is usually read by other Devices.
-/// \param certificate The certificate that will be stored.
+/// Stores an <code>AccessCertificate</code> with the <code>LocalDevice</code>; this certificate is usually read by other devices.
+/// \param certificate Certificate that will be stored.
 ///
 - (void)storeCertificate:(AccessCertificate * _Nonnull)certificate;
-/// Revokes a stored certificate from Device’s storage. The stored certificate and its accompanying registered certificate are deleted from the storage.
-/// \param serial The 9-byte serial number of the access provider.
-///
-///
-/// returns:
-/// False if the certificates do not exist.
-- (BOOL)revokeCertificateWithSerial:(NSArray<NSNumber *> * _Nonnull)serial SWIFT_WARN_UNUSED_RESULT;
-/// Resets the LocalDevice’s storage and stops broadcasting.
+/// Resets the <code>LocalDevice</code>’s <code>AccessCertificate</code>-s database and stops broadcasting.
 - (void)reset;
-/// Resets the LocalDevice’s storage.
+/// Resets the <code>LocalDevice</code>’s <code>AccessCertificate</code>-s database.
 - (void)resetStorage;
-/// Clears the bluetooth advertisment filter
-/// When the device is already broadcasting, it needs to be stopped and started again.
+/// Clears the bluetooth advertisment filter.
+/// When the device is already broadcasting, it needs to be stopped and started again to see the effect.
 /// seealso:
 ///
 /// <ul>
@@ -448,23 +315,6 @@ SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) LocalDevice 
 ///   </li>
 /// </ul>
 - (void)clearBroadcastingFilter;
-/// Set the bluetooth advertisment filter
-/// This sets the advertisment data to contain vehicle serial,
-/// for the scanning device to find it more easily among many.
-/// When the device is already broadcasting, it needs to be stopped and started again.
-/// seealso:
-///
-/// <ul>
-///   <li>
-///     <code>clearBroadcastingFilter()</code>
-///   </li>
-///   <li>
-///     <code>isBroadcastingFilterActive</code>
-///   </li>
-/// </ul>
-/// \param vehicleSerial The vehicle’s serial, that should find this device.
-///
-- (void)setBroadcastingFilterWithVehicleSerial:(NSData * _Nonnull)vehicleSerial;
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
 @end
 
