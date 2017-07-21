@@ -18,26 +18,7 @@
 		D3B148EB1F0D12C400683886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B148E91F0D12C400683886 /* Main.storyboard */; };
 		D3B148ED1F0D12C400683886 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3B148EC1F0D12C400683886 /* Assets.xcassets */; };
 		D3B148F01F0D12C400683886 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B148EE1F0D12C400683886 /* LaunchScreen.storyboard */; };
-		D3B148FB1F0D12C400683886 /* ScaffoldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B148FA1F0D12C400683886 /* ScaffoldTests.swift */; };
-		D3B149061F0D12C400683886 /* ScaffoldUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B149051F0D12C400683886 /* ScaffoldUITests.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		D3B148F71F0D12C400683886 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D3B148DA1F0D12C400683886 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D3B148E11F0D12C400683886;
-			remoteInfo = Scaffold;
-		};
-		D3B149021F0D12C400683886 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D3B148DA1F0D12C400683886 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D3B148E11F0D12C400683886;
-			remoteInfo = Scaffold;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		D3B1491C1F0D12F300683886 /* Embed Frameworks */ = {
@@ -66,12 +47,6 @@
 		D3B148EC1F0D12C400683886 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3B148EF1F0D12C400683886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3B148F11F0D12C400683886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D3B148F61F0D12C400683886 /* ScaffoldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScaffoldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D3B148FA1F0D12C400683886 /* ScaffoldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaffoldTests.swift; sourceTree = "<group>"; };
-		D3B148FC1F0D12C400683886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D3B149011F0D12C400683886 /* ScaffoldUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScaffoldUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D3B149051F0D12C400683886 /* ScaffoldUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaffoldUITests.swift; sourceTree = "<group>"; };
-		D3B149071F0D12C400683886 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,23 +60,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D3B148F31F0D12C400683886 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D3B148FE1F0D12C400683886 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		20F346541F225716009920FF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D3B148EC1F0D12C400683886 /* Assets.xcassets */,
+				D3B148F11F0D12C400683886 /* Info.plist */,
+				D3B148EE1F0D12C400683886 /* LaunchScreen.storyboard */,
+				D3B148E91F0D12C400683886 /* Main.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		D3B148D91F0D12C400683886 = {
 			isa = PBXGroup;
 			children = (
@@ -109,8 +81,6 @@
 				D346CCC91F16B80E006608F4 /* HMCrypto.framework */,
 				D346CCCA1F16B80E006608F4 /* HMKit.framework */,
 				D3B148E41F0D12C400683886 /* Scaffold */,
-				D3B148F91F0D12C400683886 /* ScaffoldTests */,
-				D3B149041F0D12C400683886 /* ScaffoldUITests */,
 				D3B148E31F0D12C400683886 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -119,8 +89,6 @@
 			isa = PBXGroup;
 			children = (
 				D3B148E21F0D12C400683886 /* Scaffold.app */,
-				D3B148F61F0D12C400683886 /* ScaffoldTests.xctest */,
-				D3B149011F0D12C400683886 /* ScaffoldUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,30 +98,9 @@
 			children = (
 				D3B148E51F0D12C400683886 /* AppDelegate.swift */,
 				D3B148E71F0D12C400683886 /* ViewController.swift */,
-				D3B148E91F0D12C400683886 /* Main.storyboard */,
-				D3B148EC1F0D12C400683886 /* Assets.xcassets */,
-				D3B148EE1F0D12C400683886 /* LaunchScreen.storyboard */,
-				D3B148F11F0D12C400683886 /* Info.plist */,
+				20F346541F225716009920FF /* Resources */,
 			);
 			path = Scaffold;
-			sourceTree = "<group>";
-		};
-		D3B148F91F0D12C400683886 /* ScaffoldTests */ = {
-			isa = PBXGroup;
-			children = (
-				D3B148FA1F0D12C400683886 /* ScaffoldTests.swift */,
-				D3B148FC1F0D12C400683886 /* Info.plist */,
-			);
-			path = ScaffoldTests;
-			sourceTree = "<group>";
-		};
-		D3B149041F0D12C400683886 /* ScaffoldUITests */ = {
-			isa = PBXGroup;
-			children = (
-				D3B149051F0D12C400683886 /* ScaffoldUITests.swift */,
-				D3B149071F0D12C400683886 /* Info.plist */,
-			);
-			path = ScaffoldUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,42 +124,6 @@
 			productReference = D3B148E21F0D12C400683886 /* Scaffold.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D3B148F51F0D12C400683886 /* ScaffoldTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D3B1490D1F0D12C400683886 /* Build configuration list for PBXNativeTarget "ScaffoldTests" */;
-			buildPhases = (
-				D3B148F21F0D12C400683886 /* Sources */,
-				D3B148F31F0D12C400683886 /* Frameworks */,
-				D3B148F41F0D12C400683886 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D3B148F81F0D12C400683886 /* PBXTargetDependency */,
-			);
-			name = ScaffoldTests;
-			productName = ScaffoldTests;
-			productReference = D3B148F61F0D12C400683886 /* ScaffoldTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		D3B149001F0D12C400683886 /* ScaffoldUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D3B149101F0D12C400683886 /* Build configuration list for PBXNativeTarget "ScaffoldUITests" */;
-			buildPhases = (
-				D3B148FD1F0D12C400683886 /* Sources */,
-				D3B148FE1F0D12C400683886 /* Frameworks */,
-				D3B148FF1F0D12C400683886 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D3B149031F0D12C400683886 /* PBXTargetDependency */,
-			);
-			name = ScaffoldUITests;
-			productName = ScaffoldUITests;
-			productReference = D3B149011F0D12C400683886 /* ScaffoldUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -227,18 +138,6 @@
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = F42CFRE556;
 						ProvisioningStyle = Automatic;
-					};
-					D3B148F51F0D12C400683886 = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = F42CFRE556;
-						ProvisioningStyle = Automatic;
-						TestTargetID = D3B148E11F0D12C400683886;
-					};
-					D3B149001F0D12C400683886 = {
-						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = F42CFRE556;
-						ProvisioningStyle = Automatic;
-						TestTargetID = D3B148E11F0D12C400683886;
 					};
 				};
 			};
@@ -256,8 +155,6 @@
 			projectRoot = "";
 			targets = (
 				D3B148E11F0D12C400683886 /* Scaffold */,
-				D3B148F51F0D12C400683886 /* ScaffoldTests */,
-				D3B149001F0D12C400683886 /* ScaffoldUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -273,20 +170,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D3B148F41F0D12C400683886 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D3B148FF1F0D12C400683886 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -299,36 +182,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D3B148F21F0D12C400683886 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D3B148FB1F0D12C400683886 /* ScaffoldTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D3B148FD1F0D12C400683886 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D3B149061F0D12C400683886 /* ScaffoldUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D3B148F81F0D12C400683886 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D3B148E11F0D12C400683886 /* Scaffold */;
-			targetProxy = D3B148F71F0D12C400683886 /* PBXContainerItemProxy */;
-		};
-		D3B149031F0D12C400683886 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D3B148E11F0D12C400683886 /* Scaffold */;
-			targetProxy = D3B149021F0D12C400683886 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		D3B148E91F0D12C400683886 /* Main.storyboard */ = {
@@ -481,64 +335,6 @@
 			};
 			name = Release;
 		};
-		D3B1490E1F0D12C400683886 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = F42CFRE556;
-				INFOPLIST_FILE = ScaffoldTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.highmobility.samples.ScaffoldTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scaffold.app/Scaffold";
-			};
-			name = Debug;
-		};
-		D3B1490F1F0D12C400683886 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = F42CFRE556;
-				INFOPLIST_FILE = ScaffoldTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.highmobility.samples.ScaffoldTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Scaffold.app/Scaffold";
-			};
-			name = Release;
-		};
-		D3B149111F0D12C400683886 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = F42CFRE556;
-				INFOPLIST_FILE = ScaffoldUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.highmobility.samples.ScaffoldUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = Scaffold;
-			};
-			name = Debug;
-		};
-		D3B149121F0D12C400683886 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = F42CFRE556;
-				INFOPLIST_FILE = ScaffoldUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.highmobility.samples.ScaffoldUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = Scaffold;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -556,24 +352,6 @@
 			buildConfigurations = (
 				D3B1490B1F0D12C400683886 /* Debug */,
 				D3B1490C1F0D12C400683886 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D3B1490D1F0D12C400683886 /* Build configuration list for PBXNativeTarget "ScaffoldTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D3B1490E1F0D12C400683886 /* Debug */,
-				D3B1490F1F0D12C400683886 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D3B149101F0D12C400683886 /* Build configuration list for PBXNativeTarget "ScaffoldUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D3B149111F0D12C400683886 /* Debug */,
-				D3B149121F0D12C400683886 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

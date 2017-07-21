@@ -10,9 +10,11 @@ import UIKit
 import HMKit
 import AutoAPI
 
+
 class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
 
     @IBOutlet weak var status: UILabel!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +59,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
 
         // PASTE THE SNIPPET HERE
 
-        LocalDevice.sharedDevice.delegate = self as LocalDeviceDelegate
+        LocalDevice.sharedDevice.delegate = self
 
         do {
             // Start Bluetooth broadcasting, so that the car can connect to this device
@@ -193,6 +195,4 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 }
-
