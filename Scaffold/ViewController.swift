@@ -59,12 +59,13 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
 
         // PASTE THE SNIPPET HERE
 
-        LocalDevice.sharedDevice.delegate = self
+        LocalDevice.shared.delegate = self
 
         do {
             // Start Bluetooth broadcasting, so that the car can connect to this device
-            try LocalDevice.sharedDevice.startBroadcasting()
-        } catch {
+            try LocalDevice.shared.startBroadcasting()
+        }
+        catch {
             print("Start Broadcasting error: \(error)")
         }
 
@@ -134,7 +135,8 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
                     print("Failed to download certificate \(result).")
                 }
             }
-        } catch {
+        }
+        catch {
             print("Download cert error: \(error)")
         }
     }
@@ -152,8 +154,9 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         // Bluetooth link disconnected
 
         do {
-            try LocalDevice.sharedDevice.startBroadcasting()
-        } catch {
+            try LocalDevice.shared.startBroadcasting()
+        }
+        catch {
             print("Start Broadcasting error: \(error)")
         }
     }
@@ -162,7 +165,8 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         do {
             // Approving without user input
             try approve()
-        } catch {
+        }
+        catch {
             print("Pairing timed out")
         }
     }
@@ -171,13 +175,18 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         if (link.state == .authenticated) {
 
             // Bluetooth link authenticated, ready to send a command
-            link.sendCommand(AutoAPI.DoorLocksCommand.getStateBytes) { response, error in
-                if (error == nil) {
-                    print("Sent Get Door Locks")
-                }
-                else {
-                    print("Error sending Get Door Locks")
-                }
+            do {
+                try link.sendCommand(AutoAPI.DoorLocksCommand.getStateBytes, commandSent: { error in
+                    if (error == nil) {
+                        print("Sent Get Door Locks")
+                    }
+                    else {
+                        print("Error sending Get Door Locks")
+                    }
+                })
+            }
+            catch {
+                print("Error sending Get Door Locks: \(error)")
             }
         }
     }

@@ -246,6 +246,9 @@ SWIFT_CLASS("_TtC5HMKit17DeviceCertificate")
 SWIFT_CLASS("_TtC5HMKit11LocalDevice")
 @interface LocalDevice : Device
 /// Singleton access for the <code>LocalDevice</code>, read-only.
+SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) LocalDevice * _Nonnull shared;)
++ (LocalDevice * _Nonnull)shared SWIFT_WARN_UNUSED_RESULT;
+/// Singleton access for the <code>LocalDevice</code>, read-only.
 SWIFT_CLASS_PROPERTY(@property (nonatomic, class, readonly, strong) LocalDevice * _Nonnull sharedDevice;)
 + (LocalDevice * _Nonnull)sharedDevice SWIFT_WARN_UNUSED_RESULT;
 /// <code>AccessCertificates</code> registered with the <code>LocalDevice</code>, read-only.
