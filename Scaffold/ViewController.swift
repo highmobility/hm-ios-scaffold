@@ -26,7 +26,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         /*
 
          Before using the HMKit, you must initialise the LocalDevice with a snippet from the Developer Center:
-         - go to https://developers.high-mobility.com
+         - go to https://code.mercedes-benz-challenge.com
          - LOGIN
          - choose DEVELOP (in top-left, the (2nd) button with a spanner)
          - choose APPLICATIONS (in the left)
@@ -61,6 +61,12 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
 
         LocalDevice.shared.delegate = self
 
+
+        guard LocalDevice.shared.certificate != nil else {
+            fatalError("Please initialise the HMKit with the instrucions above, thanks")
+        }
+
+
         do {
             // Start Bluetooth broadcasting, so that the car can connect to this device
             try LocalDevice.shared.startBroadcasting()
@@ -73,7 +79,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
             /*
 
              Before using Telematics in HMKit, you must get the Access Certificate for the car / emualator:
-             - go to https://developers.high-mobility.com
+             - go to https://code.mercedes-benz-challenge.com
              - LOGIN
              - go to Tutorials ›› SDK ›› iOS for instructions to connect a service to the car
              - find and do the tutorial for connecting a Service to the car
@@ -99,6 +105,12 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
             
             
             let accessToken: String = "PASTE ACCESS TOKEN HERE"
+
+
+            guard accessToken != "PASTE ACCESS TOKEN HERE" else {
+                fatalError("Please get the ACCESS TOKEN with the instructions above, thanks")
+            }
+
 
             // Send command to the car through Telematics, make sure that the emulator is opened for this to work, otherwise "Vehicle asleep" will be returned
             try Telematics.downloadAccessCertificate(accessToken: accessToken) { result in
@@ -198,10 +210,5 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
             return
         }
         print("Got the lock state \(locks).")
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
