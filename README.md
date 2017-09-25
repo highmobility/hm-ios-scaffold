@@ -1,6 +1,6 @@
 # Overview
 
-This sample app for iOS shows the basic use of the SDKs to authenticate with an emulator and send a command to it.
+This sample app for iOS shows the basic use of HMKit to authenticate with the car emulator and send a command to it.
 
 # Configuration
 
@@ -11,8 +11,9 @@ Before running the app, make sure to configure the following in `ViewController.
 
 # Run the app
 
-Run the app on your phone, or simulator, to see the basic flow:
-- initialising the SDK
-- getting Access Certificates
-- connecting and authenticating with an emulator
-- sending commands
+Run the app on your phone, or the iOS simulator, to see the basic flow:
+
+1. Initialising the SDK
+1. Getting Access Certificates
+1. Connecting and authenticating with an emulator
+1. Sending commands
