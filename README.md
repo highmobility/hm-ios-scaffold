@@ -12,7 +12,7 @@ Before running the app, make sure to configure the following in `ViewController.
 # Run the app
 
 Run the app on your phone, or simulator, to see the basic flow:
-    - initialising the SDK
-    - getting Access Certificates
-    - connecting and authenticating with an emulator
-    - sending commands.
+- initialising the SDK
+- getting Access Certificates
+- connecting and authenticating with an emulator
+- sending commands.
