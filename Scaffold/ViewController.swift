@@ -173,7 +173,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         }
     }
 
-    func link(_ link: Link, didReceiveAuthorisationRequest serialNumber: [UInt8], approve: @escaping ((Void) throws -> Void), timeout: TimeInterval) {
+    func link(_ link: Link, didReceiveAuthorisationRequest serialNumber: [UInt8], approve: @escaping (() throws -> Void), timeout: TimeInterval) {
         do {
             // Approving without user input
             try approve()
