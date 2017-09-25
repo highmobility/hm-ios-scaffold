@@ -26,7 +26,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         /*
 
          Before using the HMKit, you must initialise the LocalDevice with a snippet from the Developer Center:
-         - go to https://code.mercedes-benz-challenge.com
+         - go to https://developers.high-mobility.com
          - LOGIN
          - choose DEVELOP (in top-left, the (2nd) button with a spanner)
          - choose APPLICATIONS (in the left)
@@ -79,7 +79,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
             /*
 
              Before using Telematics in HMKit, you must get the Access Certificate for the car / emualator:
-             - go to https://code.mercedes-benz-challenge.com
+             - go to https://developers.high-mobility.com
              - LOGIN
              - go to Tutorials ›› SDK ›› iOS for instructions to connect a service to the car
              - find and do the tutorial for connecting a Service to the car
