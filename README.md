@@ -15,4 +15,4 @@ Run the app on your phone, or simulator, to see the basic flow:
 - initialising the SDK
 - getting Access Certificates
 - connecting and authenticating with an emulator
-- sending commands.
+- sending commands
