@@ -118,7 +118,6 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
                 if case TelematicsRequestResult.success(let serial) = result {
                     print("Certificate downloaded, sending command through telematics.")
 
-
                     do {
                         try Telematics.sendCommand(AutoAPI.DoorLocksCommand.lockDoorsBytes(.unlock), vehicleSerial: serial) { response in
 
