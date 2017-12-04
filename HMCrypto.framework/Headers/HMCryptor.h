@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// ECDSA
 
 + (HMKeyPair *)generateKeyPair;
++ (HMKeyPair *)generateKeyPairFromPrivateKey:(NSData *)privateKey;
 + (NSData *)sharedKeyForPrivateKey:(NSData *)privateKey otherPublicKey:(NSData *)publicKey;
 
 + (NSData *)signatureForData:(NSData *)data privateKey:(NSData *)privateKey;

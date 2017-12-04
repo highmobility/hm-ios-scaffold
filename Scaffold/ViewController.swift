@@ -115,14 +115,14 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
             // Send command to the car through Telematics, make sure that the emulator is opened for this to work, otherwise "Vehicle asleep" will be returned
             try Telematics.downloadAccessCertificate(accessToken: accessToken) { result in
 
-                if case Telematics.TelematicsRequestResult.success(let serial) = result {
+                if case TelematicsRequestResult.success(let serial) = result {
                     print("Certificate downloaded, sending command through telematics.")
 
 
                     do {
                         try Telematics.sendCommand(AutoAPI.DoorLocksCommand.lockDoorsBytes(.unlock), vehicleSerial: serial) { response in
 
-                            if case Telematics.TelematicsRequestResult.success(let data) = response {
+                            if case TelematicsRequestResult.success(let data) = response {
                                 guard let data = data else {
                                     return // fail
                                 }
@@ -173,7 +173,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         }
     }
 
-    func link(_ link: Link, didReceiveAuthorisationRequest serialNumber: [UInt8], approve: @escaping (() throws -> Void), timeout: TimeInterval) {
+    func link(_ link: Link, authorisationRequestedBy serialNumber: [UInt8], approve: @escaping (() throws -> Void), timeout: TimeInterval) {
         do {
             // Approving without user input
             try approve()
@@ -183,12 +183,12 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         }
     }
 
-    func link(_ link: Link, stateDidChange oldState: LinkState) {
+    func link(_ link: Link, stateChanged oldState: LinkState) {
         if (link.state == .authenticated) {
 
             // Bluetooth link authenticated, ready to send a command
             do {
-                try link.sendCommand(AutoAPI.DoorLocksCommand.getStateBytes, commandSent: { error in
+                try link.sendCommand(AutoAPI.DoorLocksCommand.getStateBytes, sent: { error in
                     if (error == nil) {
                         print("Sent Get Door Locks")
                     }
@@ -203,7 +203,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         }
     }
 
-    func link(_ link: Link, didReceiveCommand bytes: [UInt8]) {
+    func link(_ link: Link, commandReceived bytes: [UInt8]) {
 
         guard let locks = AutoAPI.parseIncomingCommand(bytes)?.value as? AutoAPI.DoorLocksCommand.Response else {
             print("Failed to parse Auto API")
