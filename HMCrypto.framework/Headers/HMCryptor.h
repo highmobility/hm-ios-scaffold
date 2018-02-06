@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSData *)HMACForData:(NSData *)data key:(NSData *)key;
 + (BOOL)verifyHMAC:(NSData *)hmac forData:(NSData *)data key:(NSData *)key;
 
-// max data length is 256 bytes. data with fewer bytes is appended with 0x00-s.
+
 + (NSData *)sha256ForData:(NSData *)data;
 
 // helpers

@@ -1,11 +1,4 @@
 framework module AutoAPI {
-  umbrella header "AutoAPI.h"
-
-  export *
-  module * { export * }
-}
-
-module AutoAPI.Swift {
     header "AutoAPI-Swift.h"
     requires objc
 }
