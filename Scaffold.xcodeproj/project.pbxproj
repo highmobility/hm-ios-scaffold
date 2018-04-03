@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D346CCCB1F16B80E006608F4 /* AutoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D346CCC81F16B80E006608F4 /* AutoAPI.framework */; };
-		D346CCCC1F16B80E006608F4 /* AutoAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D346CCC81F16B80E006608F4 /* AutoAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D346CCCD1F16B80E006608F4 /* HMCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D346CCC91F16B80E006608F4 /* HMCrypto.framework */; };
-		D346CCCE1F16B80E006608F4 /* HMCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D346CCC91F16B80E006608F4 /* HMCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D346CCCF1F16B80E006608F4 /* HMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D346CCCA1F16B80E006608F4 /* HMKit.framework */; };
-		D346CCD01F16B80E006608F4 /* HMKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D346CCCA1F16B80E006608F4 /* HMKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		207DDA0B2073684300B30370 /* HMUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA062073684200B30370 /* HMUtilities.framework */; };
+		207DDA0C2073684300B30370 /* HMUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA062073684200B30370 /* HMUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		207DDA0D2073684300B30370 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA072073684200B30370 /* CommonCrypto.framework */; };
+		207DDA0E2073684300B30370 /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA072073684200B30370 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		207DDA0F2073684300B30370 /* HMCryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA082073684200B30370 /* HMCryptoKit.framework */; };
+		207DDA102073684300B30370 /* HMCryptoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA082073684200B30370 /* HMCryptoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		207DDA112073684300B30370 /* AutoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA092073684300B30370 /* AutoAPI.framework */; };
+		207DDA122073684300B30370 /* AutoAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA092073684300B30370 /* AutoAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		207DDA132073684300B30370 /* HMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA0A2073684300B30370 /* HMKit.framework */; };
+		207DDA142073684300B30370 /* HMKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA0A2073684300B30370 /* HMKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D3B148E61F0D12C400683886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B148E51F0D12C400683886 /* AppDelegate.swift */; };
 		D3B148E81F0D12C400683886 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B148E71F0D12C400683886 /* ViewController.swift */; };
 		D3B148EB1F0D12C400683886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B148E91F0D12C400683886 /* Main.storyboard */; };
@@ -27,9 +31,11 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D346CCCE1F16B80E006608F4 /* HMCrypto.framework in Embed Frameworks */,
-				D346CCD01F16B80E006608F4 /* HMKit.framework in Embed Frameworks */,
-				D346CCCC1F16B80E006608F4 /* AutoAPI.framework in Embed Frameworks */,
+				207DDA122073684300B30370 /* AutoAPI.framework in Embed Frameworks */,
+				207DDA142073684300B30370 /* HMKit.framework in Embed Frameworks */,
+				207DDA102073684300B30370 /* HMCryptoKit.framework in Embed Frameworks */,
+				207DDA0E2073684300B30370 /* CommonCrypto.framework in Embed Frameworks */,
+				207DDA0C2073684300B30370 /* HMUtilities.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -37,9 +43,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D346CCC81F16B80E006608F4 /* AutoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AutoAPI.framework; sourceTree = "<group>"; };
-		D346CCC91F16B80E006608F4 /* HMCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMCrypto.framework; sourceTree = "<group>"; };
-		D346CCCA1F16B80E006608F4 /* HMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMKit.framework; sourceTree = "<group>"; };
+		207DDA062073684200B30370 /* HMUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMUtilities.framework; sourceTree = "<group>"; };
+		207DDA072073684200B30370 /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommonCrypto.framework; sourceTree = "<group>"; };
+		207DDA082073684200B30370 /* HMCryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMCryptoKit.framework; sourceTree = "<group>"; };
+		207DDA092073684300B30370 /* AutoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AutoAPI.framework; sourceTree = "<group>"; };
+		207DDA0A2073684300B30370 /* HMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMKit.framework; sourceTree = "<group>"; };
 		D3B148E21F0D12C400683886 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B148E51F0D12C400683886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B148E71F0D12C400683886 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,9 +62,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D346CCCD1F16B80E006608F4 /* HMCrypto.framework in Frameworks */,
-				D346CCCF1F16B80E006608F4 /* HMKit.framework in Frameworks */,
-				D346CCCB1F16B80E006608F4 /* AutoAPI.framework in Frameworks */,
+				207DDA112073684300B30370 /* AutoAPI.framework in Frameworks */,
+				207DDA132073684300B30370 /* HMKit.framework in Frameworks */,
+				207DDA0F2073684300B30370 /* HMCryptoKit.framework in Frameworks */,
+				207DDA0D2073684300B30370 /* CommonCrypto.framework in Frameworks */,
+				207DDA0B2073684300B30370 /* HMUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,9 +87,11 @@
 		D3B148D91F0D12C400683886 = {
 			isa = PBXGroup;
 			children = (
-				D346CCC81F16B80E006608F4 /* AutoAPI.framework */,
-				D346CCC91F16B80E006608F4 /* HMCrypto.framework */,
-				D346CCCA1F16B80E006608F4 /* HMKit.framework */,
+				207DDA092073684300B30370 /* AutoAPI.framework */,
+				207DDA072073684200B30370 /* CommonCrypto.framework */,
+				207DDA082073684200B30370 /* HMCryptoKit.framework */,
+				207DDA0A2073684300B30370 /* HMKit.framework */,
+				207DDA062073684200B30370 /* HMUtilities.framework */,
 				D3B148E41F0D12C400683886 /* Scaffold */,
 				D3B148E31F0D12C400683886 /* Products */,
 			);
@@ -131,7 +143,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "High-Mobility";
 				TargetAttributes = {
 					D3B148E11F0D12C400683886 = {
@@ -219,6 +231,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -226,6 +239,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -276,6 +290,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -283,6 +298,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

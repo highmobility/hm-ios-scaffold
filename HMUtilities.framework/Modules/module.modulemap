@@ -1,0 +1,4 @@
+framework module HMUtilities {
+    header "HMUtilities-Swift.h"
+    requires objc
+}
