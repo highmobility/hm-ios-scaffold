@@ -169,4 +169,8 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
 
         print("Got the lock state \(locks).")
     }
+
+    func link(_ link: Link, revokeCompleted bytes: [UInt8]) {
+        print("Received REVOKE:", bytes.hex)
+    }
 }
