@@ -30,8 +30,8 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
          *   2. Go to the LEARN section and choose iOS
          *   3. Follow the Getting Started instructions
          *
-         * By the end of the tutorial you will have a snippet for initialisation,
-         * that looks something like this:
+         * By the end of the tutorial you will have a snippet for initialisation
+         * looking something like this:
          *
          *   do {
          *       try LocalDevice.shared.initialise(deviceCertificate: Base64String, devicePrivateKey: Base64String, issuerPublicKey: Base64String)
@@ -66,12 +66,14 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
             let accessToken: String = "<#Paste the ACCESS TOKEN here#>"
 
 
-            guard accessToken != "PASTE ACCESS TOKEN HERE" else {
+            guard accessToken != "Paste the ACCESS TOKEN here" else {
                 fatalError("Please get the ACCESS TOKEN with the instructions above, thanks")
             }
 
 
-            // Send command to the car through Telematics, make sure that the emulator is opened for this to work, otherwise "Vehicle asleep" will be returned
+            // Send a command to the car through Telematics.
+            // Make sure that the emulator is OPENED for this to work,
+            // otherwise "Vehicle asleep" could be returned.
             try Telematics.downloadAccessCertificate(accessToken: accessToken) { result in
                 if case TelematicsRequestResult.success(let serial) = result {
                     print("Certificate downloaded, sending command through telematics.")
@@ -80,7 +82,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
                         try Telematics.sendCommand(DoorLocks.lockUnlock(.unlock), serial: serial) { response in
                             if case TelematicsRequestResult.success(let data) = response {
                                 guard let data = data else {
-                                    return // fail
+                                    return print("Missing response data")
                                 }
 
                                 guard let locks = AutoAPI.parseBinary(data) as? DoorLocks else {
@@ -95,7 +97,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
                         }
                     }
                     catch {
-                        print("Failed to send command")
+                        print("Failed to send command:", error)
                     }
                 }
                 else {
