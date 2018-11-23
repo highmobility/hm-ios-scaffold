@@ -11,7 +11,7 @@ import HMKit
 import UIKit
 
 
-class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
+class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
 
     @IBOutlet weak var status: UILabel!
 
@@ -20,7 +20,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         super.viewDidLoad()
 
         // Logging options that are interesting to you
-        LocalDevice.loggingOptions = [.bluetooth, .telematics]
+        HMLocalDevice.loggingOptions = [.bluetooth, .telematics]
 
         /*
          * Before using HMKit, you'll have to initialise the LocalDevice singleton
@@ -46,17 +46,17 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         <#Paste the SNIPPET here#>
 
 
-        LocalDevice.shared.delegate = self
+        HMLocalDevice.shared.delegate = self
 
 
-        guard LocalDevice.shared.certificate != nil else {
+        guard HMLocalDevice.shared.certificate != nil else {
             fatalError("Please initialise the HMKit with the instrucions above, thanks")
         }
 
 
         do {
             // Start Bluetooth broadcasting, so that the car can connect to this device
-            try LocalDevice.shared.startBroadcasting()
+            try HMLocalDevice.shared.startBroadcasting()
         }
         catch {
             print("Start Broadcasting error: \(error)")
@@ -74,18 +74,18 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
             // Send a command to the car through Telematics.
             // Make sure that the emulator is OPENED for this to work,
             // otherwise "Vehicle asleep" could be returned.
-            try Telematics.downloadAccessCertificate(accessToken: accessToken) { result in
-                if case TelematicsRequestResult.success(let serial) = result {
+            try HMTelematics.downloadAccessCertificate(accessToken: accessToken) { result in
+                if case HMTelematicsRequestResult.success(let serial) = result {
                     print("Certificate downloaded, sending command through telematics.")
 
                     do {
-                        try Telematics.sendCommand(DoorLocks.lockUnlock(.unlock), serial: serial) { response in
-                            if case TelematicsRequestResult.success(let data) = response {
+                        try HMTelematics.sendCommand(AADoorLocks.lockUnlock(.unlocked), serial: serial) { response in
+                            if case HMTelematicsRequestResult.success(let data) = response {
                                 guard let data = data else {
                                     return print("Missing response data")
                                 }
 
-                                guard let locks = AutoAPI.parseBinary(data) as? DoorLocks else {
+                                guard let locks = AutoAPI.parseBinary(data) as? AADoorLocks else {
                                     return print("Failed to parse Auto API")
                                 }
 
@@ -113,19 +113,19 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
 
     // MARK: LocalDeviceDelegate
 
-    func localDevice(didReceiveLink link: Link) {
+    func localDevice(didReceiveLink link: HMLink) {
         // Bluetooth link to car created
         link.delegate = self
     }
 
-    func localDevice(stateChanged state: LocalDeviceState, oldState: LocalDeviceState) {
+    func localDevice(stateChanged state: HMLocalDeviceState, oldState: HMLocalDeviceState) {
         print("State changed to \(state)")
     }
 
-    func localDevice(didLoseLink link: Link) {
+    func localDevice(didLoseLink link: HMLink) {
         // Bluetooth link disconnected
         do {
-            try LocalDevice.shared.startBroadcasting()
+            try HMLocalDevice.shared.startBroadcasting()
         }
         catch {
             print("Start Broadcasting error: \(error)")
@@ -135,7 +135,7 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
 
     // MARK: LinkDelegate
 
-    func link(_ link: Link, authorisationRequestedBy serialNumber: [UInt8], approve: @escaping (() throws -> Void), timeout: TimeInterval) {
+    func link(_ link: HMLink, authorisationRequestedBy serialNumber: [UInt8], approve: @escaping (() throws -> Void), timeout: TimeInterval) {
         do {
             // Approving without user input
             try approve()
@@ -145,11 +145,11 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         }
     }
 
-    func link(_ link: Link, stateChanged oldState: LinkState) {
+    func link(_ link: HMLink, stateChanged oldState: HMLinkState) {
         if (link.state == .authenticated) {
             // Bluetooth link authenticated, ready to send a command
             do {
-                try link.sendCommand(DoorLocks.getLockState, sent: { error in
+                try link.sendCommand(AADoorLocks.getLocksState, sent: { error in
                     if (error == nil) {
                         print("Sent Get Door Locks")
                     }
@@ -164,15 +164,15 @@ class ViewController: UIViewController, LocalDeviceDelegate, LinkDelegate {
         }
     }
 
-    func link(_ link: Link, commandReceived bytes: [UInt8]) {
-        guard let locks = AutoAPI.parseBinary(bytes) as? DoorLocks else {
+    func link(_ link: HMLink, commandReceived bytes: [UInt8]) {
+        guard let locks = AutoAPI.parseBinary(bytes) as? AADoorLocks else {
             return print("Failed to parse Auto API")
         }
 
         print("Got the lock state \(locks).")
     }
 
-    func link(_ link: Link, revokeCompleted bytes: [UInt8]) {
+    func link(_ link: HMLink, revokeCompleted bytes: [UInt8]) {
         print("Received REVOKE:", bytes.hex)
     }
 }

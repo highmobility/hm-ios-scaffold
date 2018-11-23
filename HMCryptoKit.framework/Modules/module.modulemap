@@ -1,4 +1,4 @@
 framework module HMCryptoKit {
-    header "HMCryptoKit-Swift.h"
-    requires objc
+  header "HMCryptoKit-Swift.h"
+  requires objc
 }

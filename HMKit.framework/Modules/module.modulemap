@@ -1,4 +1,4 @@
 framework module HMKit {
-    header "HMKit-Swift.h"
-    requires objc
+  header "HMKit-Swift.h"
+  requires objc
 }
