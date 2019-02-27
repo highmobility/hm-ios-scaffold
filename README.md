@@ -17,3 +17,7 @@ Run the app on your phone, or the iOS simulator, to see the basic flow:
 1. Getting Access Certificates
 1. Connecting and authenticating with an emulator
 1. Sending commands
+
+# Questions or Comments ?
+
+If you have questions or if you would like to send us feedback, join our [Slack Channel](https://slack.high-mobility.com/) or email us at [support@high-mobility.com](mailto:support@high-mobility.com).
