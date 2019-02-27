@@ -11,7 +11,7 @@ import HMKit
 import UIKit
 
 
-class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
+class ViewController: UIViewController, HMKitDelegate, HMLinkDelegate {
 
     @IBOutlet weak var status: UILabel!
 
@@ -20,7 +20,7 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
         super.viewDidLoad()
 
         // Logging options that are interesting to you
-        HMLocalDevice.loggingOptions = [.bluetooth, .telematics]
+        HMKit.shared.loggingOptions = [.bluetooth, .telematics]
 
         /*
          * Before using HMKit, you'll have to initialise the LocalDevice singleton
@@ -46,17 +46,17 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
         <#Paste the SNIPPET here#>
 
 
-        HMLocalDevice.shared.delegate = self
+        HMKit.shared.delegate = self
 
 
-        guard HMLocalDevice.shared.certificate != nil else {
+        guard HMKit.shared.certificate != nil else {
             fatalError("Please initialise the HMKit with the instrucions above, thanks")
         }
 
 
         do {
             // Start Bluetooth broadcasting, so that the car can connect to this device
-            try HMLocalDevice.shared.startBroadcasting()
+            try HMKit.shared.startBroadcasting()
         }
         catch {
             print("Start Broadcasting error: \(error)")
@@ -79,7 +79,7 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
                     print("Certificate downloaded, sending command through telematics.")
 
                     do {
-                        try HMTelematics.sendCommand(AADoorLocks.lockUnlock(.unlocked), serial: serial) { response in
+                        try HMTelematics.sendCommand(AADoorLocks.lockUnlock(.unlocked).bytes, serial: serial) { response in
                             if case HMTelematicsRequestResult.success(let data) = response {
                                 guard let data = data else {
                                     return print("Missing response data")
@@ -113,19 +113,19 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
 
     // MARK: LocalDeviceDelegate
 
-    func localDevice(didReceiveLink link: HMLink) {
+    func hmKit(didReceiveLink link: HMLink) {
         // Bluetooth link to car created
         link.delegate = self
     }
 
-    func localDevice(stateChanged state: HMLocalDeviceState, oldState: HMLocalDeviceState) {
-        print("State changed to \(state)")
+    func hmKit(stateChanged newState: HMKitState, oldState: HMKitState) {
+        print("State changed to \(newState)")
     }
 
-    func localDevice(didLoseLink link: HMLink) {
+    func hmKit(didLoseLink link: HMLink) {
         // Bluetooth link disconnected
         do {
-            try HMLocalDevice.shared.startBroadcasting()
+            try HMKit.shared.startBroadcasting()
         }
         catch {
             print("Start Broadcasting error: \(error)")
@@ -145,16 +145,17 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
         }
     }
 
-    func link(_ link: HMLink, stateChanged oldState: HMLinkState) {
+    func link(_ link: HMLink, stateChanged newState: HMLinkState, previousState: HMLinkState) {
         if (link.state == .authenticated) {
             // Bluetooth link authenticated, ready to send a command
             do {
-                try link.sendCommand(AADoorLocks.getLocksState, sent: { error in
-                    if (error == nil) {
+                try link.send(command: AADoorLocks.getLocksState.bytes, completion: {
+                    switch $0 {
+                    case .error(let error):
+                        print("Error sending Get Door Locks:", error)
+
+                    case .success:
                         print("Sent Get Door Locks")
-                    }
-                    else {
-                        print("Error sending Get Door Locks")
                     }
                 })
             }
@@ -174,5 +175,9 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
 
     func link(_ link: HMLink, revokeCompleted bytes: [UInt8]) {
         print("Received REVOKE:", bytes.hex)
+    }
+
+    func link(_ link: HMLink, receivedError error: HMProtocolError) {
+        print("Link received an error:", error)
     }
 }

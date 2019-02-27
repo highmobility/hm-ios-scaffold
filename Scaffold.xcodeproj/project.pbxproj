@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		207DDA0B2073684300B30370 /* HMUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA062073684200B30370 /* HMUtilities.framework */; };
 		207DDA0C2073684300B30370 /* HMUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA062073684200B30370 /* HMUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		207DDA0D2073684300B30370 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA072073684200B30370 /* CommonCrypto.framework */; };
-		207DDA0E2073684300B30370 /* CommonCrypto.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA072073684200B30370 /* CommonCrypto.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		207DDA0F2073684300B30370 /* HMCryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA082073684200B30370 /* HMCryptoKit.framework */; };
 		207DDA102073684300B30370 /* HMCryptoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA082073684200B30370 /* HMCryptoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		207DDA112073684300B30370 /* AutoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA092073684300B30370 /* AutoAPI.framework */; };
@@ -34,7 +32,6 @@
 				207DDA122073684300B30370 /* AutoAPI.framework in Embed Frameworks */,
 				207DDA142073684300B30370 /* HMKit.framework in Embed Frameworks */,
 				207DDA102073684300B30370 /* HMCryptoKit.framework in Embed Frameworks */,
-				207DDA0E2073684300B30370 /* CommonCrypto.framework in Embed Frameworks */,
 				207DDA0C2073684300B30370 /* HMUtilities.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -44,7 +41,6 @@
 
 /* Begin PBXFileReference section */
 		207DDA062073684200B30370 /* HMUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMUtilities.framework; sourceTree = "<group>"; };
-		207DDA072073684200B30370 /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CommonCrypto.framework; sourceTree = "<group>"; };
 		207DDA082073684200B30370 /* HMCryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMCryptoKit.framework; sourceTree = "<group>"; };
 		207DDA092073684300B30370 /* AutoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AutoAPI.framework; sourceTree = "<group>"; };
 		207DDA0A2073684300B30370 /* HMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMKit.framework; sourceTree = "<group>"; };
@@ -65,7 +61,6 @@
 				207DDA112073684300B30370 /* AutoAPI.framework in Frameworks */,
 				207DDA132073684300B30370 /* HMKit.framework in Frameworks */,
 				207DDA0F2073684300B30370 /* HMCryptoKit.framework in Frameworks */,
-				207DDA0D2073684300B30370 /* CommonCrypto.framework in Frameworks */,
 				207DDA0B2073684300B30370 /* HMUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				207DDA092073684300B30370 /* AutoAPI.framework */,
-				207DDA072073684200B30370 /* CommonCrypto.framework */,
 				207DDA082073684200B30370 /* HMCryptoKit.framework */,
 				207DDA0A2073684300B30370 /* HMKit.framework */,
 				207DDA062073684200B30370 /* HMUtilities.framework */,
