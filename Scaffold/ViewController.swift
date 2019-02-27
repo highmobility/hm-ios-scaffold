@@ -23,7 +23,7 @@ class ViewController: UIViewController, HMKitDelegate, HMLinkDelegate {
         HMKit.shared.loggingOptions = [.bluetooth, .telematics]
 
         /*
-         * Before using HMKit, you'll have to initialise the LocalDevice singleton
+         * Before using HMKit, you'll have to initialise the HMKit singleton
          * with a snippet from the Platform Workspace:
          *
          *   1. Sign in to the workspace
@@ -34,7 +34,7 @@ class ViewController: UIViewController, HMKitDelegate, HMLinkDelegate {
          * looking something like this:
          *
          *   do {
-         *       try LocalDevice.shared.initialise(deviceCertificate: Base64String, devicePrivateKey: Base64String, issuerPublicKey: Base64String)
+         *       try HMKit.shared.initialise(deviceCertificate: Base64String, devicePrivateKey: Base64String, issuerPublicKey: Base64String)
          *   }
          *   catch {
          *       // Handle the error
@@ -111,7 +111,7 @@ class ViewController: UIViewController, HMKitDelegate, HMLinkDelegate {
     }
 
 
-    // MARK: LocalDeviceDelegate
+    // MARK: HMKitDelegate
 
     func hmKit(didReceiveLink link: HMLink) {
         // Bluetooth link to car created
