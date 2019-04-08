@@ -89,7 +89,7 @@ class ViewController: UIViewController, HMKitDelegate, HMLinkDelegate {
                                     return print("Failed to parse Auto API")
                                 }
 
-                                print("Got the new lock state \(locks).")
+                                print("Got the new lock state \(locks.debugTree.stringValue).")
                             }
                             else {
                                 print("Failed to lock the doors \(response).")
@@ -170,7 +170,7 @@ class ViewController: UIViewController, HMKitDelegate, HMLinkDelegate {
             return print("Failed to parse Auto API")
         }
 
-        print("Got the lock state \(locks).")
+        print("Got the lock state \(locks.debugTree.stringValue).")
     }
 
     func link(_ link: HMLink, revokeCompleted bytes: [UInt8]) {
