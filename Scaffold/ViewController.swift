@@ -34,7 +34,7 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
          * looking something like this:
          *
          *   do {
-         *       try HMKit.shared.initialise(deviceCertificate: Base64String, devicePrivateKey: Base64String, issuerPublicKey: Base64String)
+         *       try HMLocalDevice.shared.initialise(deviceCertificate: Base64String, devicePrivateKey: Base64String, issuerPublicKey: Base64String)
          *   }
          *   catch {
          *       // Handle the error
@@ -82,18 +82,15 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
 
                 do {
                     try HMTelematics.sendCommand(AADoorLocks.lockUnlock(.unlocked).bytes, serial: serial) { response in
-
-
-                        if case .success(let data) = response {
-                            guard let locks = AAAutoAPI.parseBinary(data) as? AADoorLocks else {
-                                return print("Failed to parse Auto API")
-                            }
-
-                            print("Got the new lock state \(locks.debugTree.stringValue).")
+                        guard case .success(let data) = response else {
+                            return print("Failed to lock the doors \(response).")
                         }
-                        else {
-                            print("Failed to lock the doors \(response).")
+
+                        guard let locks = AAAutoAPI.parseBinary(data) as? AADoorLocks else {
+                            return print("Failed to parse Auto API")
                         }
+
+                        print("Got the new lock state \(locks.debugTree.stringValue).")
                     }
                 }
                 catch {
@@ -107,7 +104,7 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
     }
 
 
-    // MARK: HMKitDelegate
+    // MARK: HMLocalDeviceDelegate
 
     func localDevice(didReceiveLink link: HMLink) {
         // Bluetooth link to car created
