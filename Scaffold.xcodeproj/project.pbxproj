@@ -3,18 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		207DDA0B2073684300B30370 /* HMUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA062073684200B30370 /* HMUtilities.framework */; };
-		207DDA0C2073684300B30370 /* HMUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA062073684200B30370 /* HMUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		207DDA0F2073684300B30370 /* HMCryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA082073684200B30370 /* HMCryptoKit.framework */; };
-		207DDA102073684300B30370 /* HMCryptoKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA082073684200B30370 /* HMCryptoKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		207DDA112073684300B30370 /* AutoAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA092073684300B30370 /* AutoAPI.framework */; };
-		207DDA122073684300B30370 /* AutoAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA092073684300B30370 /* AutoAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		207DDA132073684300B30370 /* HMKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA0A2073684300B30370 /* HMKit.framework */; };
-		207DDA142073684300B30370 /* HMKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 207DDA0A2073684300B30370 /* HMKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		20805D2623757ED3000FA31C /* HMUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 20805D2523757ED3000FA31C /* HMUtilities */; };
+		20805D2923757EEA000FA31C /* HMCryptoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20805D2823757EEA000FA31C /* HMCryptoKit */; };
+		20805D2C23757F05000FA31C /* AutoAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 20805D2B23757F05000FA31C /* AutoAPI */; };
+		20805D2D23757F0B000FA31C /* HMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20805D2223757EBD000FA31C /* HMKit.xcframework */; };
+		20805D2E23757F0B000FA31C /* HMKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20805D2223757EBD000FA31C /* HMKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		D3B148E61F0D12C400683886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B148E51F0D12C400683886 /* AppDelegate.swift */; };
 		D3B148E81F0D12C400683886 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B148E71F0D12C400683886 /* ViewController.swift */; };
 		D3B148EB1F0D12C400683886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B148E91F0D12C400683886 /* Main.storyboard */; };
@@ -29,10 +26,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				207DDA122073684300B30370 /* AutoAPI.framework in Embed Frameworks */,
-				207DDA142073684300B30370 /* HMKit.framework in Embed Frameworks */,
-				207DDA102073684300B30370 /* HMCryptoKit.framework in Embed Frameworks */,
-				207DDA0C2073684300B30370 /* HMUtilities.framework in Embed Frameworks */,
+				20805D2E23757F0B000FA31C /* HMKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,10 +34,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		207DDA062073684200B30370 /* HMUtilities.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMUtilities.framework; sourceTree = "<group>"; };
-		207DDA082073684200B30370 /* HMCryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMCryptoKit.framework; sourceTree = "<group>"; };
-		207DDA092073684300B30370 /* AutoAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AutoAPI.framework; sourceTree = "<group>"; };
-		207DDA0A2073684300B30370 /* HMKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HMKit.framework; sourceTree = "<group>"; };
+		20805D2223757EBD000FA31C /* HMKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = HMKit.xcframework; sourceTree = "<group>"; };
 		D3B148E21F0D12C400683886 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B148E51F0D12C400683886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B148E71F0D12C400683886 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,10 +49,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				207DDA112073684300B30370 /* AutoAPI.framework in Frameworks */,
-				207DDA132073684300B30370 /* HMKit.framework in Frameworks */,
-				207DDA0F2073684300B30370 /* HMCryptoKit.framework in Frameworks */,
-				207DDA0B2073684300B30370 /* HMUtilities.framework in Frameworks */,
+				20805D2623757ED3000FA31C /* HMUtilities in Frameworks */,
+				20805D2D23757F0B000FA31C /* HMKit.xcframework in Frameworks */,
+				20805D2923757EEA000FA31C /* HMCryptoKit in Frameworks */,
+				20805D2C23757F05000FA31C /* AutoAPI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,10 +73,7 @@
 		D3B148D91F0D12C400683886 = {
 			isa = PBXGroup;
 			children = (
-				207DDA092073684300B30370 /* AutoAPI.framework */,
-				207DDA082073684200B30370 /* HMCryptoKit.framework */,
-				207DDA0A2073684300B30370 /* HMKit.framework */,
-				207DDA062073684200B30370 /* HMUtilities.framework */,
+				20805D2223757EBD000FA31C /* HMKit.xcframework */,
 				D3B148E41F0D12C400683886 /* Scaffold */,
 				D3B148E31F0D12C400683886 /* Products */,
 			);
@@ -126,6 +114,11 @@
 			dependencies = (
 			);
 			name = Scaffold;
+			packageProductDependencies = (
+				20805D2523757ED3000FA31C /* HMUtilities */,
+				20805D2823757EEA000FA31C /* HMCryptoKit */,
+				20805D2B23757F05000FA31C /* AutoAPI */,
+			);
 			productName = Scaffold;
 			productReference = D3B148E21F0D12C400683886 /* Scaffold.app */;
 			productType = "com.apple.product-type.application";
@@ -157,6 +150,11 @@
 				Base,
 			);
 			mainGroup = D3B148D91F0D12C400683886;
+			packageReferences = (
+				20805D2423757ED3000FA31C /* XCRemoteSwiftPackageReference "hm-utilities-swift" */,
+				20805D2723757EEA000FA31C /* XCRemoteSwiftPackageReference "hm-crypto-kit-swift" */,
+				20805D2A23757F05000FA31C /* XCRemoteSwiftPackageReference "hm-auto-api-swift" */,
+			);
 			productRefGroup = D3B148E31F0D12C400683886 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -318,7 +316,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -330,12 +329,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = F42CFRE556;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = Scaffold/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.highmobility.samples.Scaffold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -348,12 +347,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = F42CFRE556;
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-				);
 				INFOPLIST_FILE = Scaffold/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.3.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.highmobility.samples.Scaffold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -382,6 +381,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		20805D2423757ED3000FA31C /* XCRemoteSwiftPackageReference "hm-utilities-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:highmobility/hm-utilities-swift.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.4.5;
+			};
+		};
+		20805D2723757EEA000FA31C /* XCRemoteSwiftPackageReference "hm-crypto-kit-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:highmobility/hm-crypto-kit-swift.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 1.2.13;
+			};
+		};
+		20805D2A23757F05000FA31C /* XCRemoteSwiftPackageReference "hm-auto-api-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:highmobility/hm-auto-api-swift.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 10.0.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		20805D2523757ED3000FA31C /* HMUtilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20805D2423757ED3000FA31C /* XCRemoteSwiftPackageReference "hm-utilities-swift" */;
+			productName = HMUtilities;
+		};
+		20805D2823757EEA000FA31C /* HMCryptoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20805D2723757EEA000FA31C /* XCRemoteSwiftPackageReference "hm-crypto-kit-swift" */;
+			productName = HMCryptoKit;
+		};
+		20805D2B23757F05000FA31C /* AutoAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20805D2A23757F05000FA31C /* XCRemoteSwiftPackageReference "hm-auto-api-swift" */;
+			productName = AutoAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D3B148DA1F0D12C400683886 /* Project object */;
 }

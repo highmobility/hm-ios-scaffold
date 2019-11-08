@@ -1,4 +1,0 @@
-framework module AutoAPI {
-  header "AutoAPI-Swift.h"
-  requires objc
-}
