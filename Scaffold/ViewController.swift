@@ -23,7 +23,7 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
         HMLocalDevice.shared.loggingOptions = [.bluetooth, .telematics]
 
         /*
-         * Before using HMKit, you'll have to initialise the HMKit singleton
+         * Before using HMKit, you'll have to initialise the HMLocalDevice singleton
          * with a snippet from the Platform Workspace:
          *
          *   1. Sign in to the workspace
@@ -48,8 +48,9 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
 
         HMLocalDevice.shared.delegate = self
 
+
         guard HMLocalDevice.shared.certificate != nil else {
-            fatalError("Please initialise the HMKit with the instrucions above, thanks")
+            fatalError("Please initialise the HMLocalDevice with the instrucions above, thanks")
         }
 
 
@@ -74,23 +75,28 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
             // Make sure that the emulator is OPENED for this to work,
             // otherwise "Vehicle asleep" could be returned.
             try HMTelematics.downloadAccessCertificate(accessToken: accessToken) { result in
-                guard case .success(let serial) = result else {
+                guard let serial = try? result.get() else {
                     return print("Failed to download certificate \(result).")
                 }
 
                 print("Certificate downloaded, sending command through telematics.")
 
                 do {
-                    try HMTelematics.sendCommand(AADoorLocks.lockUnlock(.unlocked).bytes, serial: serial) { response in
-                        guard case .success(let data) = response else {
-                            return print("Failed to lock the doors \(response).")
-                        }
+                    try HMTelematics.sendCommand(AADoors.lockUnlockDoors(locksState: .unlocked), serial: serial) { response in
+                        switch response {
+                        case .failure(let error):
+                            return print("Failed to lock the doors, error: \(error).")
 
-                        guard let locks = AAAutoAPI.parseBinary(data) as? AADoorLocks else {
-                            return print("Failed to parse Auto API")
-                        }
+                        case .success(let command, _, _):
+                            guard let locks = AAAutoAPI.parseBinary(command) as? AADoors else {
+                                print("Failed to parse Auto API.")
+                                print(AAAutoAPI.parseBinary(command)?.debugTree.stringValue ?? "nil")
 
-                        print("Got the new lock state \(locks.debugTree.stringValue).")
+                                return
+                            }
+
+                            print("Got the new lock state \(locks.debugTree.stringValue).")
+                        }
                     }
                 }
                 catch {
@@ -126,7 +132,7 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
     }
 
 
-    // MARK: LinkDelegate
+    // MARK: HMLinkDelegate
 
     func link(_ link: HMLink, authorisationRequestedBy serialNumber: [UInt8], approve: @escaping (() throws -> Void), timeout: TimeInterval) {
         do {
@@ -142,7 +148,7 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
         if (link.state == .authenticated) {
             // Bluetooth link authenticated, ready to send a command
             do {
-                try link.send(command: AADoorLocks.getLocksState.bytes, completion: {
+                try link.send(command: AADoors.getDoorsState(), completion: {
                     switch $0 {
                     case .failure(let error):
                         print("Error sending Get Door Locks:", error)
@@ -158,8 +164,8 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
         }
     }
 
-    func link(_ link: HMLink, commandReceived bytes: [UInt8]) {
-        guard let locks = AAAutoAPI.parseBinary(bytes) as? AADoorLocks else {
+    func link(_ link: HMLink, commandReceived bytes: [UInt8], contentType: HMContainerContentType, requestID: [UInt8]) {
+        guard let locks = AAAutoAPI.parseBinary(bytes) as? AADoors else {
             return print("Failed to parse Auto API")
         }
 

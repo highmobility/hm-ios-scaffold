@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)
+// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
 // swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name HMKit
 import CoreBluetooth
 import CoreFoundation
@@ -144,6 +144,16 @@ public struct HMTelematicsRequestError : Swift.Decodable, Swift.Error {
   public let title: Swift.String
   public init(from decoder: Swift.Decoder) throws
 }
+public enum HMContainerContentType : Swift.UInt8 {
+  case unknown
+  case autoAPI
+  case vss
+  public typealias RawValue = Swift.UInt8
+  public init?(rawValue: Swift.UInt8)
+  public var rawValue: Swift.UInt8 {
+    get
+  }
+}
 public enum HMProtocolCommand : Swift.UInt8 {
   case getNonce
   case getDeviceCert
@@ -163,12 +173,21 @@ public enum HMProtocolCommand : Swift.UInt8 {
 public protocol HMLinkDelegate {
   typealias Approve = () throws -> Swift.Void
   func link(_ link: HMKit.HMLink, authorisationRequestedBy serialNumber: [Swift.UInt8], approve: @escaping Self.Approve, timeout: Foundation.TimeInterval)
-  func link(_ link: HMKit.HMLink, commandReceived bytes: [Swift.UInt8])
+  func link(_ link: HMKit.HMLink, commandReceived bytes: [Swift.UInt8], contentType: HMKit.HMContainerContentType, requestID: [Swift.UInt8])
   func link(_ link: HMKit.HMLink, revokeCompleted bytes: [Swift.UInt8])
   func link(_ link: HMKit.HMLink, stateChanged newState: HMKit.HMLinkState, previousState: HMKit.HMLinkState)
   func link(_ link: HMKit.HMLink, receivedError error: HMKit.HMProtocolError)
 }
 public struct HMLocalDeviceConfiguration {
+  public enum ContainerVersion {
+    case one
+    case two
+    public static func == (a: HMKit.HMLocalDeviceConfiguration.ContainerVersion, b: HMKit.HMLocalDeviceConfiguration.ContainerVersion) -> Swift.Bool
+    public var hashValue: Swift.Int {
+      get
+    }
+    public func hash(into hasher: inout Swift.Hasher)
+  }
   public var broadcastingFilter: Foundation.Data? {
     get
     set
@@ -182,6 +201,7 @@ public struct HMLocalDeviceConfiguration {
   }
   public var isEncryptionEnabled: Swift.Bool
   public var overrideAdvertisementName: Swift.Bool
+  public var containerVersion: HMKit.HMLocalDeviceConfiguration.ContainerVersion
   public init<C>(broadcastingFilter: C? = nil, overrideAdvertisementName: Swift.Bool? = nil) where C : Swift.Collection, C.Element == Swift.UInt8
 }
 public typealias HMLinkCommandCompletionBlock = (Swift.Result<Swift.Void, HMKit.HMLinkError>) -> Swift.Void
@@ -197,7 +217,7 @@ public class HMLink {
 }
 extension HMLink {
   public func disconnect()
-  public func send<C>(command: C, completion: @escaping HMKit.HMLinkCommandCompletionBlock) throws where C : Swift.Collection, C.Element == Swift.UInt8
+  public func send<C>(command: C, contentType: HMKit.HMContainerContentType = .autoAPI, requestID: [Swift.UInt8] = [], completion: @escaping HMKit.HMLinkCommandCompletionBlock) throws where C : Swift.Collection, C.Element == Swift.UInt8
   public func sendRevoke() throws
 }
 extension HMLink : Swift.Equatable {
@@ -448,6 +468,7 @@ public struct HMTelematicsCommandError : Swift.Error, Swift.CustomStringConverti
 }
 public typealias HMTelematicsResult<Success> = Swift.Result<Success, HMKit.HMTelematicsError>
 public typealias HMTelematicsResultBlock<Success> = (HMKit.HMTelematicsResult<Success>) -> Swift.Void
+public typealias HMTelematicsRequestSuccess = (command: [Swift.UInt8], contentType: HMKit.HMContainerContentType, requestID: [Swift.UInt8])
 public class HMTelematics {
   public static var loggingOptions: HMKit.HMLoggingOptions {
     get
@@ -456,7 +477,7 @@ public class HMTelematics {
   public static var urlBasePath: Swift.String
   public class func downloadAccessCertificate(accessToken: Swift.String, completionWithSerial completion: @escaping HMKit.HMTelematicsResultBlock<[Swift.UInt8]>) throws
   public class func isAuthorisedToVehicle<C>(serial: C) throws -> Swift.Bool where C : Swift.Collection, C.Element == Swift.UInt8
-  public class func sendCommand<C>(_ command: C, serial: [Swift.UInt8], completionWithResponse completion: @escaping HMKit.HMTelematicsResultBlock<[Swift.UInt8]>) throws where C : Swift.Collection, C.Element == Swift.UInt8
+  public class func sendCommand<C>(_ command: C, contentType: HMKit.HMContainerContentType = .autoAPI, requestID: [Swift.UInt8] = [], serial: [Swift.UInt8], completionWithResponse completion: @escaping HMKit.HMTelematicsResultBlock<HMKit.HMTelematicsRequestSuccess>) throws where C : Swift.Collection, C.Element == Swift.UInt8
   @objc deinit
 }
 public enum HMTelematicsError : Swift.Error {
@@ -471,9 +492,14 @@ extension HMKit.HMDeviceCertificate.Version : HMKit.HMValueGettable {}
 extension HMKit.HMDeviceCertificate.Version : Swift.Hashable {}
 extension HMKit.HMLocalDeviceState : Swift.Equatable {}
 extension HMKit.HMLocalDeviceState : Swift.Hashable {}
+extension HMKit.HMContainerContentType : Swift.Equatable {}
+extension HMKit.HMContainerContentType : Swift.Hashable {}
+extension HMKit.HMContainerContentType : Swift.RawRepresentable {}
 extension HMKit.HMProtocolCommand : Swift.Equatable {}
 extension HMKit.HMProtocolCommand : Swift.Hashable {}
 extension HMKit.HMProtocolCommand : Swift.RawRepresentable {}
+extension HMKit.HMLocalDeviceConfiguration.ContainerVersion : Swift.Equatable {}
+extension HMKit.HMLocalDeviceConfiguration.ContainerVersion : Swift.Hashable {}
 extension HMKit.HMOAuthFailure.Reason : Swift.Equatable {}
 extension HMKit.HMOAuthFailure.Reason : Swift.Hashable {}
 extension HMKit.HMLinkError : Swift.Equatable {}

@@ -3,29 +3,29 @@
     "pins": [
       {
         "package": "AutoAPI",
-        "repositoryURL": "git@github.com:highmobility/hm-auto-api-swift.git",
+        "repositoryURL": "git@github.com:highmobility/auto-api-swift.git",
         "state": {
           "branch": null,
-          "revision": "8d3e00e6e0834a6911f7689a1029c8319bf040d4",
-          "version": "10.0.9"
+          "revision": "d4253c2f4f15af39d302494373360e668f863e1c",
+          "version": "11.0.0"
         }
       },
       {
         "package": "HMCryptoKit",
-        "repositoryURL": "git@github.com:highmobility/hm-crypto-kit-swift.git",
+        "repositoryURL": "git@github.com:highmobility/hmcryptokit-swift.git",
         "state": {
           "branch": null,
-          "revision": "7095a2fa615e527f49e013d588908eebf98bfa4a",
-          "version": "1.2.13"
+          "revision": "d767965c7ae178f673acf894cc1fc0d9fcf840c0",
+          "version": "1.2.15"
         }
       },
       {
         "package": "HMUtilities",
-        "repositoryURL": "git@github.com:highmobility/hm-utilities-swift.git",
+        "repositoryURL": "https://github.com/highmobility/hmutilities-swift",
         "state": {
           "branch": null,
-          "revision": "62a294d05d50ae4438535e99c80d87635e622d29",
-          "version": "1.4.5"
+          "revision": "81e45f516e7fb41c98995fca22679966ecd1ec8c",
+          "version": "1.4.6"
         }
       }
     ]

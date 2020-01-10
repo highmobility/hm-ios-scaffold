@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20805D2623757ED3000FA31C /* HMUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = 20805D2523757ED3000FA31C /* HMUtilities */; };
-		20805D2923757EEA000FA31C /* HMCryptoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20805D2823757EEA000FA31C /* HMCryptoKit */; };
-		20805D2C23757F05000FA31C /* AutoAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 20805D2B23757F05000FA31C /* AutoAPI */; };
-		20805D2D23757F0B000FA31C /* HMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20805D2223757EBD000FA31C /* HMKit.xcframework */; };
-		20805D2E23757F0B000FA31C /* HMKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20805D2223757EBD000FA31C /* HMKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		20563D0A235F175900A452B6 /* HMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20563D00235F175100A452B6 /* HMKit.xcframework */; };
+		20563D0B235F175900A452B6 /* HMKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20563D00235F175100A452B6 /* HMKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		206F95A423C8B26200D714AE /* HMCryptoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 206F95A323C8B26200D714AE /* HMCryptoKit */; };
+		206F95A723C8B28700D714AE /* AutoAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 206F95A623C8B28700D714AE /* AutoAPI */; };
 		D3B148E61F0D12C400683886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B148E51F0D12C400683886 /* AppDelegate.swift */; };
 		D3B148E81F0D12C400683886 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B148E71F0D12C400683886 /* ViewController.swift */; };
 		D3B148EB1F0D12C400683886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B148E91F0D12C400683886 /* Main.storyboard */; };
@@ -26,7 +25,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				20805D2E23757F0B000FA31C /* HMKit.xcframework in Embed Frameworks */,
+				20563D0B235F175900A452B6 /* HMKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -34,7 +33,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		20805D2223757EBD000FA31C /* HMKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = HMKit.xcframework; sourceTree = "<group>"; };
+		20563D00235F175100A452B6 /* HMKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = HMKit.xcframework; sourceTree = "<group>"; };
 		D3B148E21F0D12C400683886 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B148E51F0D12C400683886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B148E71F0D12C400683886 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -49,10 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20805D2623757ED3000FA31C /* HMUtilities in Frameworks */,
-				20805D2D23757F0B000FA31C /* HMKit.xcframework in Frameworks */,
-				20805D2923757EEA000FA31C /* HMCryptoKit in Frameworks */,
-				20805D2C23757F05000FA31C /* AutoAPI in Frameworks */,
+				206F95A723C8B28700D714AE /* AutoAPI in Frameworks */,
+				20563D0A235F175900A452B6 /* HMKit.xcframework in Frameworks */,
+				206F95A423C8B26200D714AE /* HMCryptoKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,7 +71,7 @@
 		D3B148D91F0D12C400683886 = {
 			isa = PBXGroup;
 			children = (
-				20805D2223757EBD000FA31C /* HMKit.xcframework */,
+				20563D00235F175100A452B6 /* HMKit.xcframework */,
 				D3B148E41F0D12C400683886 /* Scaffold */,
 				D3B148E31F0D12C400683886 /* Products */,
 			);
@@ -115,9 +113,8 @@
 			);
 			name = Scaffold;
 			packageProductDependencies = (
-				20805D2523757ED3000FA31C /* HMUtilities */,
-				20805D2823757EEA000FA31C /* HMCryptoKit */,
-				20805D2B23757F05000FA31C /* AutoAPI */,
+				206F95A323C8B26200D714AE /* HMCryptoKit */,
+				206F95A623C8B28700D714AE /* AutoAPI */,
 			);
 			productName = Scaffold;
 			productReference = D3B148E21F0D12C400683886 /* Scaffold.app */;
@@ -151,9 +148,8 @@
 			);
 			mainGroup = D3B148D91F0D12C400683886;
 			packageReferences = (
-				20805D2423757ED3000FA31C /* XCRemoteSwiftPackageReference "hm-utilities-swift" */,
-				20805D2723757EEA000FA31C /* XCRemoteSwiftPackageReference "hm-crypto-kit-swift" */,
-				20805D2A23757F05000FA31C /* XCRemoteSwiftPackageReference "hm-auto-api-swift" */,
+				206F95A223C8B26200D714AE /* XCRemoteSwiftPackageReference "hmcryptokit-swift" */,
+				206F95A523C8B28700D714AE /* XCRemoteSwiftPackageReference "auto-api-swift" */,
 			);
 			productRefGroup = D3B148E31F0D12C400683886 /* Products */;
 			projectDirPath = "";
@@ -329,6 +325,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = F42CFRE556;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Scaffold/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -347,6 +347,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = F42CFRE556;
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Scaffold/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -383,46 +387,33 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		20805D2423757ED3000FA31C /* XCRemoteSwiftPackageReference "hm-utilities-swift" */ = {
+		206F95A223C8B26200D714AE /* XCRemoteSwiftPackageReference "hmcryptokit-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:highmobility/hm-utilities-swift.git";
+			repositoryURL = "git@github.com:highmobility/hmcryptokit-swift.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 1.4.5;
+				minimumVersion = 1.2.15;
 			};
 		};
-		20805D2723757EEA000FA31C /* XCRemoteSwiftPackageReference "hm-crypto-kit-swift" */ = {
+		206F95A523C8B28700D714AE /* XCRemoteSwiftPackageReference "auto-api-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:highmobility/hm-crypto-kit-swift.git";
+			repositoryURL = "git@github.com:highmobility/auto-api-swift.git";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 1.2.13;
-			};
-		};
-		20805D2A23757F05000FA31C /* XCRemoteSwiftPackageReference "hm-auto-api-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:highmobility/hm-auto-api-swift.git";
-			requirement = {
-				kind = upToNextMinorVersion;
-				minimumVersion = 10.0.9;
+				minimumVersion = 11.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		20805D2523757ED3000FA31C /* HMUtilities */ = {
+		206F95A323C8B26200D714AE /* HMCryptoKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 20805D2423757ED3000FA31C /* XCRemoteSwiftPackageReference "hm-utilities-swift" */;
-			productName = HMUtilities;
-		};
-		20805D2823757EEA000FA31C /* HMCryptoKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 20805D2723757EEA000FA31C /* XCRemoteSwiftPackageReference "hm-crypto-kit-swift" */;
+			package = 206F95A223C8B26200D714AE /* XCRemoteSwiftPackageReference "hmcryptokit-swift" */;
 			productName = HMCryptoKit;
 		};
-		20805D2B23757F05000FA31C /* AutoAPI */ = {
+		206F95A623C8B28700D714AE /* AutoAPI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 20805D2A23757F05000FA31C /* XCRemoteSwiftPackageReference "hm-auto-api-swift" */;
+			package = 206F95A523C8B28700D714AE /* XCRemoteSwiftPackageReference "auto-api-swift" */;
 			productName = AutoAPI;
 		};
 /* End XCSwiftPackageProductDependency section */
