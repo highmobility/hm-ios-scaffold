@@ -7,10 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20563D0A235F175900A452B6 /* HMKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20563D00235F175100A452B6 /* HMKit.xcframework */; };
-		20563D0B235F175900A452B6 /* HMKit.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 20563D00235F175100A452B6 /* HMKit.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		206F95A423C8B26200D714AE /* HMCryptoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 206F95A323C8B26200D714AE /* HMCryptoKit */; };
 		206F95A723C8B28700D714AE /* AutoAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 206F95A623C8B28700D714AE /* AutoAPI */; };
+		20A6655E23D1E15D00E2BD9D /* HMKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20A6655D23D1E15D00E2BD9D /* HMKit */; };
 		D3B148E61F0D12C400683886 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B148E51F0D12C400683886 /* AppDelegate.swift */; };
 		D3B148E81F0D12C400683886 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B148E71F0D12C400683886 /* ViewController.swift */; };
 		D3B148EB1F0D12C400683886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3B148E91F0D12C400683886 /* Main.storyboard */; };
@@ -25,7 +24,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				20563D0B235F175900A452B6 /* HMKit.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -33,7 +31,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		20563D00235F175100A452B6 /* HMKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = HMKit.xcframework; sourceTree = "<group>"; };
 		D3B148E21F0D12C400683886 /* Scaffold.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Scaffold.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3B148E51F0D12C400683886 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3B148E71F0D12C400683886 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,8 +45,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20A6655E23D1E15D00E2BD9D /* HMKit in Frameworks */,
 				206F95A723C8B28700D714AE /* AutoAPI in Frameworks */,
-				20563D0A235F175900A452B6 /* HMKit.xcframework in Frameworks */,
 				206F95A423C8B26200D714AE /* HMCryptoKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,7 +68,6 @@
 		D3B148D91F0D12C400683886 = {
 			isa = PBXGroup;
 			children = (
-				20563D00235F175100A452B6 /* HMKit.xcframework */,
 				D3B148E41F0D12C400683886 /* Scaffold */,
 				D3B148E31F0D12C400683886 /* Products */,
 			);
@@ -115,6 +111,7 @@
 			packageProductDependencies = (
 				206F95A323C8B26200D714AE /* HMCryptoKit */,
 				206F95A623C8B28700D714AE /* AutoAPI */,
+				20A6655D23D1E15D00E2BD9D /* HMKit */,
 			);
 			productName = Scaffold;
 			productReference = D3B148E21F0D12C400683886 /* Scaffold.app */;
@@ -150,6 +147,7 @@
 			packageReferences = (
 				206F95A223C8B26200D714AE /* XCRemoteSwiftPackageReference "hmcryptokit-swift" */,
 				206F95A523C8B28700D714AE /* XCRemoteSwiftPackageReference "auto-api-swift" */,
+				20A6655C23D1E15D00E2BD9D /* XCRemoteSwiftPackageReference "hmkit-swift" */,
 			);
 			productRefGroup = D3B148E31F0D12C400683886 /* Products */;
 			projectDirPath = "";
@@ -334,7 +332,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.5;
+				MARKETING_VERSION = 1.3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.highmobility.samples.Scaffold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -356,7 +354,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.5;
+				MARKETING_VERSION = 1.3.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.highmobility.samples.Scaffold;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -403,6 +401,14 @@
 				minimumVersion = 11.0.0;
 			};
 		};
+		20A6655C23D1E15D00E2BD9D /* XCRemoteSwiftPackageReference "hmkit-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:highmobility/hmkit-swift.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 3.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -415,6 +421,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 206F95A523C8B28700D714AE /* XCRemoteSwiftPackageReference "auto-api-swift" */;
 			productName = AutoAPI;
+		};
+		20A6655D23D1E15D00E2BD9D /* HMKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20A6655C23D1E15D00E2BD9D /* XCRemoteSwiftPackageReference "hmkit-swift" */;
+			productName = HMKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
