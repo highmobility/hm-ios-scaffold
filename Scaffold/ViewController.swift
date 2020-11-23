@@ -16,6 +16,32 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
     @IBOutlet weak var status: UILabel!
 
 
+    func parse(command: [UInt8]) {
+        guard let doors = try? AAAutoAPI.parseBytes(command) as? AADoors else {
+            print("Failed to parse Auto API.")
+
+            guard let failure = try? AAAutoAPI.parseBytes(command) as? AAFailureMessage else {
+                return print(command.hex)
+            }
+
+            print(failure.failedMessageID?.value as Any)
+            print(failure.failedMessageType?.value as Any)
+            print(failure.failedPropertyIDs?.value as Any)
+            print(failure.failureDescription?.value as Any)
+            print(failure.failureReason?.value as Any)
+
+            return
+        }
+
+        print("""
+            Got the new lock state: \(doors.locks?.compactMap(\.value).map { "\($0.location) - \($0.lockState)" } ?? [])
+                                    \(String(describing: doors.locksState?.value))
+            """)
+    }
+
+
+    // MARK: UIViewController
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -87,15 +113,8 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
                         case .failure(let error):
                             return print("Failed to lock the doors, error: \(error).")
 
-                        case .success(let command, _, _):
-                            guard let locks = AAAutoAPI.parseBinary(command) as? AADoors else {
-                                print("Failed to parse Auto API.")
-                                print(AAAutoAPI.parseBinary(command)?.debugTree.stringValue ?? "nil")
-
-                                return
-                            }
-
-                            print("Got the new lock state \(locks.debugTree.stringValue).")
+                        case .success((let command, _, _)):
+                            self.parse(command: command)
                         }
                     }
                 }
@@ -165,11 +184,7 @@ class ViewController: UIViewController, HMLocalDeviceDelegate, HMLinkDelegate {
     }
 
     func link(_ link: HMLink, commandReceived bytes: [UInt8], contentType: HMContainerContentType, requestID: [UInt8]) {
-        guard let locks = AAAutoAPI.parseBinary(bytes) as? AADoors else {
-            return print("Failed to parse Auto API")
-        }
-
-        print("Got the lock state \(locks.debugTree.stringValue).")
+        parse(command: bytes)
     }
 
     func link(_ link: HMLink, revokeCompleted bytes: [UInt8]) {

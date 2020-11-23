@@ -2,15 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "AutoAPI",
-        "repositoryURL": "git@github.com:highmobility/auto-api-swift.git",
-        "state": {
-          "branch": null,
-          "revision": "b4fba782641117838bd567bdc68d823ec524b500",
-          "version": "11.0.1"
-        }
-      },
-      {
         "package": "HMCryptoKit",
         "repositoryURL": "git@github.com:highmobility/hmcryptokit-swift.git",
         "state": {
@@ -24,8 +15,8 @@
         "repositoryURL": "git@github.com:highmobility/hmkit-swift.git",
         "state": {
           "branch": null,
-          "revision": "58a50a0410c2c4e73e012f6e592c15bd068a3976",
-          "version": "3.2.1"
+          "revision": "9b55db99adef1e9532f76a44c39d7507062d8b34",
+          "version": "3.2.3"
         }
       },
       {
